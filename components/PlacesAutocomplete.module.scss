@@ -1,0 +1,73 @@
+.wrapper{
+	max-width: 100%;
+	min-width: 360px;
+//	margin: 50px 50px;
+}
+
+.wrapper .searchInput{
+	background: #fff;
+	width: 100%;
+	border-radius: 5px;
+	position: relative;
+//	box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.12);
+}
+.searchInput input{
+	//height: 55px;
+	width: 100%;
+	// outline: none;
+	// border: none;
+	// border-radius: 5px;
+	// padding: 0 20px 0 20px;
+	// font-size: 18px;
+	// box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.searchInput.active input{
+	//border-radius: 5px 5px 0 0;
+}
+.searchInput .autocomBox{
+	z-index: 9999;
+	position: absolute;
+	background: white;
+	width: 100%;
+	padding: 0;
+	opacity: 0;
+	pointer-events: none;
+	max-height: 280px;
+	overflow-y: auto;
+	box-shadow: 1px 4px 5px 3px rgb(0 0 0 / 12%);
+	border-radius: 0 0 5px 5px;
+}
+.searchInput.active .autocomBox{
+	padding: 10px 8px;
+	opacity: 1;
+	pointer-events: auto;
+}
+.autocomBox li{
+	list-style: none;
+	padding: 8px 12px;
+	display: none;
+	width: 100%;
+	cursor: default;
+	border-radius: 3px;
+}
+.searchInput.active .autocomBox li{
+	display: block;
+}
+.autocomBox li:hover{
+	background: #efefef;
+}
+.searchInput .icon{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	height: 55px;
+	width: 55px;
+	text-align: center;
+	line-height: 55px;
+	font-size: 20px;
+	color: #644bff;
+	cursor: pointer;
+}
