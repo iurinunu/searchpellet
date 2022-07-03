@@ -23,6 +23,9 @@ const SellerRegister = ({ children }: any) => {
     //     console.log('values');
     //   return new Promise((resolve) => {
     //     setTimeout(() => {
+
+
+    // change test
     //       // alert(JSON.stringify(values, null, 2))
     //       console.log(values);
     //       resolve()
