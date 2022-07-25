@@ -8,7 +8,7 @@ import ClientSearchForm from '@/components/ClientSearchForm';
 
 const HomePage = ({ children }: any) => {
   return (
-    <HomePageLayout>
+    <HomePageLayout areaVenditori='true'>
       <ClientSearchForm />
     </HomePageLayout>
   );

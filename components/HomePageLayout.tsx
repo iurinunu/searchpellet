@@ -19,7 +19,9 @@ import AddSiteModal from './AddSiteModal';
 
 
 
-const HomePageLayout = ({ children }: any) => {
+const HomePageLayout = ({ children, areaVenditori = false }: any) => {
+
+  const auth: any = useAuth();
 
   return (
     <Box backgroundColor="gray.100" h="100vh">
@@ -51,11 +53,17 @@ const HomePageLayout = ({ children }: any) => {
         
           </Flex>
           <Flex justifyContent="center" alignItems="center">
-             <NextLink href="/homePage" passHref>
+            {areaVenditori && (
+              <NextLink href={auth.user ? "/seller-dashboard" : '/seller-login'} passHref>
                 <Button className="shadow-none" as="a" variant="solid" mr={2}>
                   Sei un Venditore?
                 </Button>
               </NextLink>
+            )
+            
+          
+          }
+             
             {/* <Avatar size="sm" src={''} /> */}
           </Flex>
         </Flex>

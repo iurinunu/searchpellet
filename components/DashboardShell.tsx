@@ -16,6 +16,7 @@ import NextLink from 'next/link';
 import { useAuth } from '@/lib/auth';
 import LogoIcon from './LogoIcon';
 import AddSiteModal from './AddSiteModal';
+import { auth } from 'firebase-admin';
 
 
 
@@ -59,6 +60,9 @@ const DashboardShell = ({ children }) => {
                   Account
                 </Button>
               </NextLink>}
+              <p>
+                {user?.email}
+              </p>
             <Avatar size="sm" src={user?.photoUrl} />
           </Flex>
         </Flex>

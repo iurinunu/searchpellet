@@ -88,7 +88,7 @@ function useProvideAuth() {
       .then((_) => {
         console.log('sign in success');
         console.log(_);
-        // Router.push('/dashboard');
+        Router.push('/seller-dashboard');
       })
       .catch((err) => {
         console.log('sign in error');
@@ -101,6 +101,13 @@ function useProvideAuth() {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(seller.email, seller.password)
+      .then(async (_) => {
+        await _.user?.updateProfile({
+          displayName: seller.name
+        });
+
+        return _;
+      })
       .then((response) => handleUser(response.user))
       .then((_) => {
         console.log('sign in success');
@@ -118,20 +125,38 @@ function useProvideAuth() {
         }
         
 
-        // Router.push('/dashboard');
-      })
-      .catch((err) => {
-        console.log('sign in error');
-        console.log(err);
-        // pop up some kind of error
+        Router.push('/seller-dashboard');
       })
     }
+
+    const loginUserWithEmailAndPassword = (email: string, password: string) => {
+      return firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(async (_) => {
+          
+  
+          return _;
+        })
+        .then((response) => handleUser(response.user))
+        .then((_) => {
+          
+          
+  
+          Router.push('/seller-dashboard');
+        });
+      }
 
   const signout = () => {
     return firebase
       .auth()
       .signOut()
-      .then(() => handleUser(false));
+      .then(async () => {
+        
+        await handleUser(false);
+        Router.push('/dashboard'); 
+      }
+      );
   };
 
   useEffect(() => {
@@ -146,7 +171,8 @@ function useProvideAuth() {
     signinWithGoogle,
     signout,
     signinWithEmail,
-    createUserWithEmailAndPassword
+    createUserWithEmailAndPassword,
+    loginUserWithEmailAndPassword
   };
 }
 

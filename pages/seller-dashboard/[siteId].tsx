@@ -5,31 +5,33 @@ import { Box, FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
 import Feedback from '@/components/Feedback';
 import { useAuth } from '@/lib/auth';
 import { createFeedback } from '@/lib/db';
-import { getAllFeedback, getAllSites } from '@/lib/db-admin';
+import { getAllFeedback, getAllSellerAds, getAllSites, getSellerAd } from '@/lib/db-admin';
 
 export async function getStaticProps(context) {
   const siteId = context.params.siteId;
-  const { feedback } = await getAllFeedback(siteId);
-
+  // const { ad } = await getSellerAd(siteId);
+  console.log('caskljdfnhkadjsnfkdjsbnfkdjs')
+  // console.log(ad);
   return {
     props: {
-      initialFeedback: feedback
+      initialFeedback: {}
     },
     revalidate: 1
   };
 }
 
 export async function getStaticPaths() {
-  const { sites } = await getAllSites();
-  const paths = sites.map((site) => ({
+  
+  const { ads } = await getAllSellerAds();
+  const paths = ads.map((ad) => ({
     params: {
-      siteId: site.id.toString()
+      siteId: ad.id.toString()
     }
   }));
 
   return {
     paths,
-    fallback: true // to not 404 if not known siteId passed
+    fallback: false // to not 404 if not known siteId passed
   };
 }
 
@@ -66,6 +68,9 @@ const FeedbackPage = ({ initialFeedback }) => {
       maxWidth="700px"
       margin="0 auto"
     >
+      <p>
+        {JSON.stringify(initialFeedback)}
+      </p>
       {auth.user && (
         <Box as="form" onSubmit={onSubmit}>
           <FormControl my={8}>
@@ -82,10 +87,10 @@ const FeedbackPage = ({ initialFeedback }) => {
           </FormControl>
         </Box>
       )}
-      {allFeedback &&
+      {/* {allFeedback &&
         allFeedback.map((feedback) => (
           <Feedback key={feedback.id} {...feedback} />
-        ))}
+        ))} */}
     </Box>
   );
 };

@@ -85,3 +85,63 @@ export async function getUser(uid) {
 
   return { userOld };
 }
+
+// pellet thing
+
+export async function getSellerAds(uid) {
+  const sitesRef = db.collection('ads');
+  const snapshot = await sitesRef
+    .where('sellerId', '==', uid)
+    .orderBy('createdAt')
+    .get();
+  if (snapshot.empty) {
+    return;
+  }  
+
+  const ads = [];
+  snapshot.forEach((doc) => {
+    ads.push({ id: doc.id, ...doc.data() });
+  });
+
+  return { ads };
+}
+
+export async function getAllSellerAds() {
+  const snapshot = await db.collection('ads').get();
+
+  const ads = [];
+
+  snapshot.forEach((doc) => {
+    ads.push({ id: doc.id, ...doc.data() });
+  });
+
+  return { ads };
+}
+
+
+export async function getSellerAd(adId) {
+  try {
+    const snapshot = await db
+      .collection('ads')
+      .doc(adId)
+      .get()
+    
+
+    const feedback = [];
+
+    // snapshot.forEach((doc) => {
+    //   feedback.push({ id: doc.id, ...doc.data() });
+    // });
+
+    // // maybe we can do this with firestore directly?
+    // feedback.sort((a, b) =>
+    //   compareDesc(parseISO(a.createdAt), parseISO(b.createdAt))
+    // );
+    console.log('snapping');
+    console.log(snapshot.data());
+
+    return { ad: snapshot.data() };
+  } catch (error) {
+    return { error };
+  }
+}
