@@ -31,7 +31,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false // to not 404 if not known siteId passed
+    fallback: true // to not 404 if not known siteId passed
   };
 }
 
