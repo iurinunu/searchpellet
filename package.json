@@ -25,7 +25,7 @@
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
     "date-fns": "^2.28.0",
-    "firebase": "^9.8.3",
+    "firebase": "^9.9.1",
     "firebase-admin": "^10.3.0",
     "firebase-functions": "^3.21.2",
     "formik": "^2.2.9",
