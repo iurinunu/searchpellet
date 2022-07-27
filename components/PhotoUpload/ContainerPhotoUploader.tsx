@@ -38,38 +38,38 @@ const ContainerPhotoUploader = ({ children, setPhotos }: any) => {
     },
 ]);
 
-  useEffect(() => {
-    //setImages()
-    return;
-    if (images.length < 1) return;
-    const newImagesUrls = [
-        {
-            id: 0,
-            url: null
-        },
-        {
-            id: 1,
-            url: null
-        },
-        {
-            id: 2,
-            url: null
-        },
-        {
-            id: 3,
-            url: null
-        },
-        {
-            id: 4,
-            url: null
-        },
-    ];
+//   useEffect(() => {
+//     //setImages()
+//     return;
+//     if (images.length < 1) return;
+//     const newImagesUrls = [
+//         {
+//             id: 0,
+//             url: null
+//         },
+//         {
+//             id: 1,
+//             url: null
+//         },
+//         {
+//             id: 2,
+//             url: null
+//         },
+//         {
+//             id: 3,
+//             url: null
+//         },
+//         {
+//             id: 4,
+//             url: null
+//         },
+//     ];
 
-    images.forEach((image) => newImagesUrls.push(URL.createObjectURL(image)));
-    setImagesURLs(newImagesUrls);
-  }, [imagesURLs]);
+//     images.forEach((image) => newImagesUrls.push(URL.createObjectURL(image)));
+//     setImagesURLs(newImagesUrls);
+//   }, [imagesURLs]);
 
-  const onImageChange = (e, index) => {
+  const onImageChange = (e: any, index: any) => {
     validateFile(e.target.files[0]);
     console.log(e);
     console.log(index);

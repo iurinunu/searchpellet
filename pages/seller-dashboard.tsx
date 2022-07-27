@@ -10,7 +10,7 @@ import SiteTableHeader from '@/components/SiteTableHeader';
 
 const SellerDashboard = ({ children }: any) => {
 
-  const { user } = useAuth();
+  const { user }: any = useAuth();
   console.log('dashboard')
   console.log(user);
   const { data } = useSWR(user ? ['/api/ads', user.token] : null, fetcher);

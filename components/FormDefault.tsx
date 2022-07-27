@@ -35,7 +35,7 @@ const FormDefault = ({children}: any) => {
   
   const { handleSubmit, register } = useForm();
 
-  const onCreateSite = ({ name, url }) => {
+  const onCreateSite = ({ name, url }: any) => {
     const newSite = {
       authorId: auth.user.uid,
       createdAt: new Date().toISOString(),
@@ -53,7 +53,7 @@ const FormDefault = ({children}: any) => {
     });
     mutate(
       ['/api/sites', auth.user.token],
-      async (data) => ({
+      async (data: any) => ({
         sites: [{ id, ...newSite }, ...data.sites]
             }),
       false
@@ -77,7 +77,7 @@ const FormDefault = ({children}: any) => {
       >
         { children }
       </Button>
-      <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent as="form" onSubmit={handleSubmit(onCreateSite)}>
           <ModalHeader fontWeight="bold">Add Site</ModalHeader>

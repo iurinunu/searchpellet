@@ -5,22 +5,23 @@ import firebase from './firebase';
 import { createUser } from './db';
 import Router from 'next/router';
 import { Seller } from 'types/seller';
+import { Auth } from 'firebase-admin/lib/auth/auth';
 
-const authContext = createContext(null);
+const authContext = createContext<any>(null);
 
 export function AuthProvider({ children }: any) {
   const auth = useProvideAuth();
   return (<authContext.Provider value={auth}> {children} </authContext.Provider>);
 }
 
-export const useAuth = () => {
-  return useContext(authContext);
+export const useAuth = (): any => {
+  return useContext<any>(authContext);
 };
 
 function useProvideAuth() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<any>(null);
 
-  const handleUser = async (rawUser) => {
+  const handleUser = async (rawUser: any) => {
     if (rawUser) {
       const user = await formatUser(rawUser);
       // extract the token property from the user object
@@ -30,7 +31,7 @@ function useProvideAuth() {
       
       setUser(user);
 
-      cookie.set('fast-feedback-auth', true, {
+      cookie.set('fast-feedback-auth', 'true', {
         expires: 1
       });
 
@@ -84,7 +85,8 @@ function useProvideAuth() {
     return firebase
       .auth()
       .signInWithEmailAndPassword(seller.email, seller.password)
-      .then((response) => handleUser(response.user, seller))
+      // .then((response) => handleUser(response.user, seller))
+      .then((response) => handleUser(response.user))
       .then((_) => {
         console.log('sign in success');
         console.log(_);
@@ -176,7 +178,7 @@ function useProvideAuth() {
   };
 }
 
-const formatUser = async (user) => {
+const formatUser = async (user: any) => {
   // let x = await user.getIdToken();
   // console.log(x);
   console.log('format user');

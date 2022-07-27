@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Skeleton } from '@chakra-ui/react';
 import { Table, Tr, Th, Td } from './Table';
 
-const SkeletonRow = ({ width }) => (
+const SkeletonRow = ({ width }: any) => (
   <Box as="tr">
     <Td>
       <Skeleton height="10px" w={width} my={4} />

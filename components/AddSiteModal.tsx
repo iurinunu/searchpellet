@@ -26,7 +26,7 @@ import { useAuth } from '@/lib/auth';
 import fetcher from '@/utils/fetcher';
 
 
-const AddSiteModal = ({children}) => {
+const AddSiteModal = ({children}: any) => {
   const initialRef = useRef();
 	const toast = useToast();
 	const auth = useAuth();
@@ -34,9 +34,9 @@ const AddSiteModal = ({children}) => {
   
   const { handleSubmit, register } = useForm();
 
-  const onCreateSite = ({ name, url }) => {
+  const onCreateSite = ({ name, url }: any) => {
     const newSite = {
-      authorId: auth.user.uid,
+      authorId: auth?.user?.uid,
       createdAt: new Date().toISOString(),
       name,
       url
@@ -52,7 +52,7 @@ const AddSiteModal = ({children}) => {
     });
     mutate(
       ['/api/sites', auth?.user.token],
-      async (data) => ({
+      async (data: any) => ({
         sites: [{ id, ...newSite }, ...data.sites]
             }),
       false
@@ -76,7 +76,7 @@ const AddSiteModal = ({children}) => {
       >
         { children }
       </Button>
-      <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent as="form" onSubmit={handleSubmit(onCreateSite)}>
           <ModalHeader fontWeight="bold">Add Site</ModalHeader>

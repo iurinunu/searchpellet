@@ -20,7 +20,7 @@ import { auth } from 'firebase-admin';
 
 
 
-const DashboardShell = ({ children }) => {
+const DashboardShell = ({ children }: any) => {
   const { user } = useAuth();
 
   return (

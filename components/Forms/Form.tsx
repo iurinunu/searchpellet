@@ -26,7 +26,7 @@ const Form: FC<IFormProps> = ({
 }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} {...rest}>
-      <div className="d-flex justify-content-center fields__email">
+      {/* <div className="d-flex justify-content-center fields__email">
         {Array.isArray(children)
           ? children.map((child) => {
               return child.props.name
@@ -40,7 +40,7 @@ const Form: FC<IFormProps> = ({
                 : child;
             })
           : children}
-      </div>
+      </div> */}
 
       <Button 
         type='submit'

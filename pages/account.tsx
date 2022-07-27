@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Box, Button } from '@chakra-ui/react';
 
 import { useAuth } from '@/lib/auth';
-import { createCheckoutSession, goToBillingPortal } from '@/lib/db';
 import DashboardShell from '@/components/DashboardShell';
 
 const Account = () => {
@@ -16,7 +15,6 @@ const Account = () => {
         <Button
           onClick={() => {
             setCheckoutLoading(true);
-            createCheckoutSession(user.uid);
           }}
           backgroundColor="gray.900"
           color="white"
@@ -33,7 +31,6 @@ const Account = () => {
         <Button
           onClick={() => {
             setBillingLoading(true);
-            goToBillingPortal();
           }}
           backgroundColor="gray.900"
           color="white"

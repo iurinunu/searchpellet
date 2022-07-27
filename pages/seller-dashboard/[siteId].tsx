@@ -7,7 +7,7 @@ import { useAuth } from '@/lib/auth';
 import { createFeedback } from '@/lib/db';
 import { getAllFeedback, getAllSellerAds, getAllSites, getSellerAd } from '@/lib/db-admin';
 
-export async function getStaticProps(context) {
+export async function getStaticProps(context: any) {
   const siteId = context.params.siteId;
   // const { ad } = await getSellerAd(siteId);
   console.log('caskljdfnhkadjsnfkdjsbnfkdjs')
@@ -23,7 +23,7 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   
   const { ads } = await getAllSellerAds();
-  const paths = ads.map((ad) => ({
+  const paths = ads.map((ad: any) => ({
     params: {
       siteId: ad.id.toString()
     }
@@ -35,26 +35,26 @@ export async function getStaticPaths() {
   };
 }
 
-const FeedbackPage = ({ initialFeedback }) => {
-  const auth = useAuth();
+const FeedbackPage = ({ initialFeedback }: any) => {
+  const auth: any = useAuth();
   const router = useRouter();
   const inputEl = useRef(null);
   const [allFeedback, setAllFeedback] = useState(initialFeedback);
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: any) => {
     e.preventDefault();
 
     const newFeedback = {
-      author: auth.user.name,
-      authorId: auth.user.uid,
-      siteId: router.query.siteId,
-      text: inputEl.current.value,
+      author: auth!.user.name,
+      authorId: auth!.user.uid,
+      siteId: router?.query.siteId,
+     // text: inputEl?.current.value,
       createdAt: new Date().toISOString(),
-      provider: auth.user.provider,
+      provider: auth?.user.provider,
       status: 'pending'
     };
 
-    inputEl.current.value = '';
+   // inputEl!.current.value = '';
     // here we're updating the state of the cmpnt before knowing if the creation was successfull, needs refactor: "Optimistic UI"
     setAllFeedback([newFeedback, ...allFeedback]); // when we update the state pass all the new stuff with the old one as well
     createFeedback(newFeedback);
@@ -71,7 +71,7 @@ const FeedbackPage = ({ initialFeedback }) => {
       <p>
         {JSON.stringify(initialFeedback)}
       </p>
-      {auth.user && (
+      {auth?.user && (
         <Box as="form" onSubmit={onSubmit}>
           <FormControl my={8}>
             <FormLabel htmlFor="comment">Comment</FormLabel>

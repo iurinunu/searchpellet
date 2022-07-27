@@ -7,7 +7,7 @@ import { editAd } from '@/lib/db';
 import { useAuth } from '@/lib/auth';
 import { mutate } from 'swr';
 
-const SiteTable = ({ ads }) => {
+const SiteTable = ({ ads }: any) => {
   const toast = useToast();
   const auth: any = useAuth();
   
@@ -40,7 +40,7 @@ const SiteTable = ({ ads }) => {
         </Tr>
       </thead>
       <tbody>
-        {ads.map((ad) => (
+        {ads.map((ad: any) => (
           <NextLink key={ad.id} href='/seller-dashboard/[siteId]' as={`/seller-dashboard/${ad.id}`} passHref>
             <Box as="tr" >
               <Td fontWeight="medium">{ad.title}</Td>

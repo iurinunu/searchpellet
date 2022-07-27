@@ -2,7 +2,7 @@
 import { getSellerAd } from '@/lib/db-admin';
 import { db } from '@/lib/firebase-admin';
 
-export default async (req, res) => {
+export default async (req: any, res: any) => {
   const siteId = req.query.siteId;
   const { ad, error } = await getSellerAd(siteId);
 

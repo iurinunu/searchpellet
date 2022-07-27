@@ -2,11 +2,11 @@ import { auth } from '@/lib/firebase-admin';
 import { getUserSites } from '@/lib/db-admin';
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default async (req, res) => {
+export default async (req: any, res: any) => {
   try {
     console.log('sites api');
-    const { uid } = await auth.verifyIdToken(req.headers.token);
-    const { sites } = await getUserSites(uid);
+    const { uid }: any = await auth.verifyIdToken(req.headers.token);
+    const { sites }: any = await getUserSites(uid);
     console.log('res');
     console.log(sites);
    // console.log(res);

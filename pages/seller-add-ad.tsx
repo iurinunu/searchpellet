@@ -56,7 +56,7 @@ const SellerAddAd = ({ children }: any) => {
         if (!data.file_?.length || data.file_?.length === 0) {
             return finalStep([], _, newAd);
         } else {
-            return uploadFiles(data.file_.filter(_ => !!_), _, newAd);
+            return uploadFiles(data.file_.filter((_: any) => !!_), _, newAd);
         }
       })
       .catch((err) => {
@@ -79,7 +79,7 @@ const SellerAddAd = ({ children }: any) => {
         });
     mutate(
         ['/api/ads', auth.user.token],
-        async (data) => ({
+        async (data: any) => ({
             sites: [{ id: doc.id, photoURLs: photoURLs, ...newAd }, ...data?.ads || []]
                 }),
         false
@@ -94,7 +94,7 @@ const SellerAddAd = ({ children }: any) => {
     
     // let defaultStorage = firebase.storage();
 
-    files.forEach((file) => {
+    files.forEach((file: any) => {
         if (!file) return;
         console.log('loop');
 

@@ -2,9 +2,8 @@ import React from 'react';
 import { Box, Code, Switch, IconButton } from '@chakra-ui/react';
 
 import { Table, Tr, Th, Td } from './Table';
-import DeleteFeedbackButton from './DeleteFeedbackButton';
 
-const FeedbackTable = (props) => {
+const FeedbackTable = (props: any) => {
   return (
     <Table>
       <thead>
@@ -17,7 +16,7 @@ const FeedbackTable = (props) => {
         </Tr>
       </thead>
       <tbody>
-        {props.feedback.map((feedback) => (
+        {props.feedback.map((feedback: any) => (
           <Box as="tr" key={feedback.id}>
             <Td fontWeight="medium">{feedback.author}</Td>
             <Td>{feedback.text}</Td>
@@ -31,7 +30,6 @@ const FeedbackTable = (props) => {
               />
             </Td>
             <Td>
-              <DeleteFeedbackButton feedbackId={feedback.id} />
             </Td>
           </Box>
         ))}
